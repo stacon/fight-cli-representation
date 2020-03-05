@@ -1,0 +1,28 @@
+{
+  "name": "fight-cli-representation",
+  "version": "0.1.0",
+  "description": "A program that emulates a generic battle between two fighters. Represented by cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./src --no-config --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stacon/Battle.git"
+  },
+  "keywords": [
+    "battle",
+    "boxing",
+    "rng"
+  ],
+  "author": "Constantinos Stathis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stacon/Battle/issues"
+  },
+  "homepage": "https://github.com/stacon/Battle#readme",
+  "devDependencies": {
+    "expect": "^25.1.0",
+    "mocha": "^7.1.0"
+  }
+}
