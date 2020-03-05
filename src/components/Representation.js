@@ -8,13 +8,13 @@ const getFightersInfo = (fightInfo, optionsIn) => {
   };
 
   return {
-    'first': () => ({
-      'representationalName': () => !!options.fighterName1 ? options.fighterName1 : fightInfo.fighter1ID,
-      'ID': () => fightInfo.fighter1ID,
+    first: () => ({
+      representationalName: () => !!options.fighterName1 ? options.fighterName1 : fightInfo.fighter1ID,
+      ID: () => fightInfo.fighter1ID,
     }),
-    'second': () => ({
-      'representationalName': () => !!options.fighterName2 ? options.fighterName2 : fightInfo.fighter2ID,
-      'ID': () => fightInfo.fighter2ID,
+    second: () => ({
+      representationalName: () => !!options.fighterName2 ? options.fighterName2 : fightInfo.fighter2ID,
+      ID: () => fightInfo.fighter2ID,
     })
   };
 }
@@ -50,10 +50,12 @@ const representAnnouncement = (firstFighterName, secondFighterName) => {
  * @param {Object} fightLogEntry 
  */
 const representAttack = ({ hitResult, attackerID, defenderID, inflictedDamage }) => {
+  const hitColorCode = inflictedDamage > 17 ? 'insane' : inflictedDamage > 9 ? 'strong' : inflictedDamage > 3 ? 'normal' : 'weak';
+  const damageOutputWithColor = colorize().hit[hitColorCode](inflictedDamage.toString());
   switch (hitResult) {
     case ('NORMAL'):
     case ('CRITICAL'): {
-      console.log(`${attackerID} ${hitResult === 'CRITICAL' ? 'power strikes' : 'jabs'} ${defenderID} for ${inflictedDamage} damage\n`);
+      console.log(`${attackerID} ${hitResult === 'CRITICAL' ? 'power strikes' : 'jabs'} ${defenderID} for ${damageOutputWithColor} damage\n`);
       break;
     }
     case ('DODGED'): {

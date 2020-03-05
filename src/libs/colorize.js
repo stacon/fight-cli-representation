@@ -9,6 +9,12 @@ const colorize = () => {
             low: (text) => c.xterm(196)(text),
             critical: (text) => c.xterm(124)(text),
         },
+        hit: {
+            weak: (dmg) => c.bold.blackBright(dmg),
+            normal: (dmg) => c.white.bold(dmg),
+            strong: (dmg) => c.yellowBright.bold(dmg),
+            insane: (dmg) => c.yellow.bold(dmg),
+        },
         events: {
             current: (text) => c.whiteBright(text),
             previous: (text) => c.xterm(249)(text),
