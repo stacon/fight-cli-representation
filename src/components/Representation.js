@@ -1,4 +1,4 @@
-const { getStrTimes } = require('../libs');
+const { getStrTimes, colorize } = require('../libs');
 
 const getFightersInfo = (fightInfo, optionsIn) => {
   let options = {
@@ -27,7 +27,10 @@ const representHP = (...fightersNameAndHP) => {
   fightersNameAndHP.forEach(({ name, HP }) => {
     const fighterNameWithTrailingSpace = name + getStrTimes(' ', 15 - name.length);
     const fighter1HPOutOf20 = Math.ceil((HP * 20) / 100);
-    console.log(`${fighterNameWithTrailingSpace}: [${getStrTimes('#', fighter1HPOutOf20)}${getStrTimes(' ', Math.min(20, 20 - fighter1HPOutOf20))}](${HP})`);
+
+    const healthBarColor = fighter1HPOutOf20 > 12 ? 'good' : fighter1HPOutOf20 > 5 ? 'moderate' : fighter1HPOutOf20 > 2 ? 'low' : 'critical';
+    const healthbarOutput = colorize().healthBar[healthBarColor](getStrTimes('#', fighter1HPOutOf20));
+    console.log(`${fighterNameWithTrailingSpace}: [${healthbarOutput}${getStrTimes(' ', Math.min(20, 20 - fighter1HPOutOf20))}](${HP})`);
   });
 }
 
